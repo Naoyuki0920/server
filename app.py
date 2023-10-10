@@ -9,7 +9,7 @@ CORS(app)
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
   if request.method == 'POST':
-    file = request.files['file']
+    file = request.files['file'] # type: ignore
     file.save(os.path.join('./static/image', file.filename))
     return f'{file.filename}がアップロードされました'
   else:
