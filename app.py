@@ -12,7 +12,7 @@ def upload_file():
         file = request.files['file']  # type: ignore
         folder_path = os.path.join('./static/image', number)
         if not os.path.exists(folder_path):
-            os.makedirs('./static/image')
+            os.makedirs(folder_path)
         file.save(os.path.join(folder_path, file.filename))
         return render_template('finish.html', filename=file.filename)
     else:
