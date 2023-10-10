@@ -9,7 +9,7 @@ def upload_file():
   if request.method == 'POST':
     file = request.files['file'] # type: ignore
     file.save(os.path.join('./static/image', file.filename))
-    return f'{file.filename}がアップロードされました'
+    return render_template('finish.html', filename=file.filename)
   else:
     return render_template('upload.html')
 
