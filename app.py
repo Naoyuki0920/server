@@ -2,7 +2,7 @@ from flask import Flask
 from flask import render_template, request
 import os
 
-app = Flask(__name__, template_folder="template")
+app = Flask(__name__)
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
