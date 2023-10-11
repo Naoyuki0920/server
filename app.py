@@ -22,12 +22,6 @@ def upload_file():
         return render_template('upload.html')
 
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
-
-# Server-Sent Eventsがよさそう
-
-
 def generate():
     while True:
         time.sleep(1)  # 1秒ごとにデータを送信
@@ -37,3 +31,9 @@ def generate():
 @app.route('/events')
 def events():
     return Response(generate(), content_type='text/event-stream')
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+
+# Server-Sent Eventsがよさそう
