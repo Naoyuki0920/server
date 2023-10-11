@@ -1,6 +1,9 @@
 from flask import Flask
 from flask import render_template, request
 import os
+import time
+from flask import Flask, Response
+
 
 app = Flask(__name__)
 
@@ -23,19 +26,14 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
 
 # Server-Sent Eventsがよさそう
-# from flask import Flask, Response
-# import time
 
-# app = Flask(__name__)
 
-# def generate():
-#     while True:
-#         time.sleep(1)  # 1秒ごとにデータを送信
-#         yield f"data: {time.strftime('%H:%M:%S')}\n\n"
+def generate():
+    while True:
+        time.sleep(1)  # 1秒ごとにデータを送信
+        yield f"data: {time.strftime('%H:%M:%S')}\n\n"
 
-# @app.route('/events')
-# def events():
-#     return Response(generate(), content_type='text/event-stream')
 
-# if __name__ == '__main__':
-#     app.run(debug=True)
+@app.route('/events')
+def events():
+    return Response(generate(), content_type='text/event-stream')
