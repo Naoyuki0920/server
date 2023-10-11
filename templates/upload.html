@@ -2,8 +2,16 @@
 {% block content %}
 <h1>ファイルのアップロード</h1>
 <form action="" method="POST" enctype="multipart/form-data">
-  <input type="number" name="number" min="1">
-  <input type="file" name="file">
-  <input type="submit" value="アップロード">
+  <!-- <input type="number" name="number" min="1"> -->
+  <!-- <input type="file" name="file">
+  <input type="submit" value="アップロード"> -->
+
+  <label for="inputPassword5" class="form-label">Number</label>
+  <input type="number" id="inputPassword5" class="form-control" aria-labelledby="passwordHelpBlock" name="number">
+  <div class="input-group">
+    <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04"
+      aria-label="Upload" name="file">
+    <button type="submit" class="btn btn-outline-secondary" id="inputGroupFileAddon04">Upload</button>
+  </div>
 </form>
 {% endblock %}
