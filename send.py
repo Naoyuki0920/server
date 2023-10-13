@@ -19,7 +19,7 @@ if __name__ == "__main__":
     path = "./static/image/1/Astronaut.glb"
     addr = "192.168.75.11"
     port = 5000
-    schedule.every(120).seconds.do(send_glb, glb_path=path, ip_addr=addr, port=port)
+    schedule.every(120).seconds.do(send_glb, glb_path="./static/image/1/Astronaut.glb", ip_addr="192.168.75.11", port=5000)
 
     while True:
         schedule.run_pending()
