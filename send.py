@@ -17,7 +17,7 @@ def send_glb(glb_path, ip_addr, port):
 
 if __name__ == "__main__":
     glb_path = "./static/image/1/Astronaut.glb"
-    ip_addr = "192.168.0.11"
+    ip_addr = "192.168.75.11"
     port = 5000
     schedule.every(120).seconds.do(send_glb(glb_path, ip_addr, port))
 
