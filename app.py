@@ -24,7 +24,7 @@ def upload_file():
 
 def generate():
     while True:
-        time.sleep(1)  # 1秒ごとにデータを送信
+        time.sleep(60)
         yield f"data: {time.strftime('%H:%M:%S')}\n\n"
 
 
