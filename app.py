@@ -21,10 +21,10 @@ def upload_file():
         return render_template('upload.html')
 
 
-@app.route('/confirm_glb/<string:directory_path>', methods=['GET'])
-def confirm_glb(directory_path):
-    # glb_file_path = 'static/image/1/Astronaut.glb'
-    return send_file(directory_path, as_attachment=True, mimetype='model/gltf-binary')
+@app.route('/confirm_glb/<int:number>', methods=['GET'])
+def confirm_glb(number):
+    glb_file_path = f'static/image/{number}/Astronaut.glb'
+    return send_file(glb_file_path, as_attachment=True, mimetype='model/gltf-binary')
 
 
 
