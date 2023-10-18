@@ -1,12 +1,11 @@
-from flask import Flask
+from flask import Flask, send_file
 from flask import render_template, request
 import os
-import time
-from flask import Flask, Response
+from flask_cors import CORS
 
 
 app = Flask(__name__)
-
+CORS(app)
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
@@ -22,15 +21,11 @@ def upload_file():
         return render_template('upload.html')
 
 
-def generate():
-    while True:
-        time.sleep(60)
-        yield f"data: {time.strftime('%H:%M:%S')}\n\n"
+@app.route('/confirm_glb/<number>', methods=['GET'])
+def confirm_glb(number):
+    glb_file_path = 'static/image/{number}/Astronaut.glb'
+    return send_file(glb_file_path, as_attachment=True, mimetype='model/gltf-binary')
 
-
-@app.route('/events')
-def events():
-    return Response(generate(), content_type='text/event-stream')
 
 
 if __name__ == '__main__':
