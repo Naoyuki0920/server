@@ -17,6 +17,16 @@ def show(num):
     files = os.listdir(directory)
     return render_template('show.html', files=files)
 
+@app.route('/delete/<filename>', methods=['POST'])
+def delete_file(filename):
+    # ファイルを削除
+    file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    if os.path.exists(file_path):
+        os.remove(file_path)
+        return 'File deleted successfully'
+    else:
+        return 'File not found'
+
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
