@@ -7,6 +7,16 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/show/<num>')
+def show():
+    directory = './static/image/{num}'
+    files = os.listdir(directory)
+    return render_template('show.html', files=files)
+
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
@@ -30,5 +40,3 @@ def confirm_glb(number):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
-
-# Server-Sent Eventsがよさそう
