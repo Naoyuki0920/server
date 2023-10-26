@@ -1,3 +1,4 @@
+import zipfile
 from flask import Flask, send_file, send_from_directory
 from flask import render_template, request
 import os
@@ -45,10 +46,20 @@ def upload_file():
 def confirm_glb(number):
     directory = f'./static/image/{number}'
     files = os.listdir(directory)
-    for filename in files:
-        glb_file_path = f'static/image/{number}/{filename}'
-        return send_file(glb_file_path, as_attachment=True, mimetype='model/gltf-binary')
+    # for filename in files:
+    #     glb_file_path = f'static/image/{number}/{filename}'
+        # return send_file(glb_file_path, as_attachment=True, mimetype='model/gltf-binary')
 
+
+    zip_filename = 'all_files.zip'
+    # ZIPファイルを作成
+    with zipfile.ZipFile(zip_filename, 'w') as zipf:
+        for file in files:
+            # ファイルをZIPに追加
+            file_path = os.path.join(directory, file)
+            zipf.write(file_path, os.path.basename(file_path))
+    # ZIPファイルをクライアントに送信
+    return send_file(zip_filename, as_attachment=True)
 
 
 if __name__ == '__main__':
