@@ -23,7 +23,7 @@ def delete_file(num, filename):
     file_path = os.path.join(f'./static/image/{num}', filename)
     if os.path.exists(file_path):
         os.remove(file_path)
-        return 'File deleted successfully'
+        return render_template('finish_delete.html', filename=filename)
     else:
         return 'File not found'
 
@@ -35,8 +35,8 @@ def upload_file():
         folder_path = os.path.join('./static/image', number)
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
-        file.save(os.path.join(folder_path, f"{number}.glb"))
-        return render_template('finish.html', filename=file.filename)
+        file.save(os.path.join(folder_path, f"{file.filename}.glb"))
+        return render_template('finish_upload.html', filename=file.filename)
     else:
         return render_template('upload.html')
 
