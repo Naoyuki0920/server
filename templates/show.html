@@ -4,7 +4,7 @@
 <h1>ファイル一覧</h1>
 <ul>
   {% for file in files %}
-    <li><a href="{{ url_for('file_detail', filename=file) }}">{{ file }}</a></li>
+    <li>{{ file }}</li>
   {% endfor %}
 </ul>
 {% endblock %}
