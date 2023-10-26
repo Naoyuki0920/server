@@ -35,7 +35,7 @@ def upload_file():
         folder_path = os.path.join('./static/image', number)
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
-        file.save(os.path.join(folder_path, f"{file.filename}.glb"))
+        file.save(os.path.join(folder_path, file.filename))
         return render_template('finish_upload.html', filename=file.filename)
     else:
         return render_template('upload.html')
