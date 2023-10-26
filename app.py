@@ -46,12 +46,6 @@ def upload_file():
 def confirm_glb(number):
     directory = f'./static/image/{number}'
     files = os.listdir(directory)
-    print(files)
-    # for filename in files:
-    #     glb_file_path = f'static/image/{number}/{filename}'
-        # return send_file(glb_file_path, as_attachment=True, mimetype='model/gltf-binary')
-
-
     zip_filename = 'all_files.zip'
     # ZIPファイルを作成
     with zipfile.ZipFile(zip_filename, 'w') as zipf:
