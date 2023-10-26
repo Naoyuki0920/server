@@ -15,12 +15,12 @@ def index():
 def show(num):
     directory = f'./static/image/{num}'
     files = os.listdir(directory)
-    return render_template('show.html', files=files)
+    return render_template('show.html', files=files, num = num)
 
-@app.route('/delete/<filename>', methods=['POST'])
-def delete_file(filename):
+@app.route('/delete/<int:num>/<filename>', methods=['POST'])
+def delete_file(num, filename):
     # ファイルを削除
-    file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+    file_path = os.path.join(f'./static/image/{num}', filename)
     if os.path.exists(file_path):
         os.remove(file_path)
         return 'File deleted successfully'
