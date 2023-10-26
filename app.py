@@ -1,4 +1,4 @@
-from flask import Flask, send_file
+from flask import Flask, send_file, send_from_directory
 from flask import render_template, request
 import os
 from flask_cors import CORS
@@ -43,8 +43,11 @@ def upload_file():
 
 @app.route('/confirm_glb/<int:number>', methods=['GET'])
 def confirm_glb(number):
-    glb_file_path = f'static/image/{number}/{number}.glb'
-    return send_file(glb_file_path, as_attachment=True, mimetype='model/gltf-binary')
+    directory = f'./static/image/{number}'
+    files = os.listdir(directory)
+    for filename in files:
+        glb_file_path = f'static/image/{number}/{filename}'
+        return send_file(glb_file_path, as_attachment=True, mimetype='model/gltf-binary')
 
 
 
