@@ -11,9 +11,9 @@ CORS(app)
 def index():
     return render_template('index.html')
 
-@app.route('/show/<num>')
-def show():
-    directory = './static/image/{num}'
+@app.route('/show/<int:num>', methods=['GET'])
+def show(num):
+    directory = f'./static/image/{num}'
     files = os.listdir(directory)
     return render_template('show.html', files=files)
 
