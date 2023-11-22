@@ -3,7 +3,7 @@ from flask import Flask, send_file, send_from_directory
 from flask import render_template, request
 import os
 from flask_cors import CORS
-
+from waitress import serve
 
 app = Flask(__name__)
 CORS(app)
@@ -58,4 +58,4 @@ def confirm_glb(number):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    serve(app, host='0.0.0.0', port=5000)
